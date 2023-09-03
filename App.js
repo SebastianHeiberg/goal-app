@@ -7,8 +7,10 @@ import GoalInput from "./componenets/GoalInput";
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
 
-  function deleteGaolHandler() {
-    console.log("Deleted");
+  function deleteGaolHandler(id) {
+    setCourseGoals(currentCourseGoals => {
+      return currentCourseGoals.filter( (goal) => goal.id !== id )
+    })
   }
 
   function addGoalHandler(enteredGoalText) {
@@ -28,6 +30,7 @@ export default function App() {
             return (
               <GoalItem
                 text={itemData.item.text}
+                id={itemData.item.id}
                 onDeleteItem={deleteGaolHandler}
               />
             );
